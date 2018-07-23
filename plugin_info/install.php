@@ -18,16 +18,16 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
-function template_install() {
+function calcul_arrosage_install() {
     
 }
 
-function template_update() {
+function calcul_arrosage_update() {
     
 }
 
 
-function template_remove() {
+function calcul_arrosage_remove() {
     
 }
 
