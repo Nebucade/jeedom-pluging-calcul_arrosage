@@ -67,7 +67,7 @@ class calcul_arrosage extends eqLogic {
     public function postSave() {
         $info = $this->getCmd(null, 'story');
         if (!is_object($info)) {
-            $info = new vdmCmd();
+            $info = new calcul_arrosageCmd();
             $info->setName(__('Histoire', __FILE__));
         }
         $info->setLogicalId('story');
@@ -78,7 +78,7 @@ class calcul_arrosage extends eqLogic {
         
         $refresh = $this->getCmd(null, 'refresh');
         if (!is_object($refresh)) {
-            $refresh = new vdmCmd();
+            $refresh = new calcul_arrosageCmd();
             $refresh->setName(__('Rafraichir', __FILE__));
         }
         $refresh->setEqLogic_id($this->getId());
