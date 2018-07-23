@@ -9,7 +9,7 @@
 	"hasDependency" : false,
 	"hasOwnDeamon" : false,
 	"maxDependancyInstallTime" : 0,
-	"changelog" : "https://github.com/Nebucade/jeedom-pluging-calcul_arrosage/changelog",
+	"changelog" : "https://github.com/Nebucade/jeedom-pluging-calcul_arrosage/blob/master/changelog",
 	"documentation" : "https://github.com/Nebucade/jeedom-pluging-calcul_arrosage",
 	"link" : {
 		"forum":"Lien vers le forum",
