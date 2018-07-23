@@ -65,15 +65,15 @@ class calcul_arrosage extends eqLogic {
     }
 
     public function postSave() {
-        $info = $this->getCmd(null, 'story');
+        $info = $this->getCmd(null, 'PluieJournee');
         if (!is_object($info)) {
             $info = new calcul_arrosageCmd();
-            $info->setName(__('Histoire', __FILE__));
+            $info->setName(__('Pluie sur la journée', __FILE__));
         }
-        $info->setLogicalId('story');
+        $info->setLogicalId('PluieJournee');
         $info->setEqLogic_id($this->getId());
         $info->setType('info');
-        $info->setSubType('string');
+        $info->setSubType('numeric');
         $info->save();	
         
         $refresh = $this->getCmd(null, 'refresh');
