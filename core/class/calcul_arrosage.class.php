@@ -124,6 +124,12 @@ class calcul_arrosage extends eqLogic {
      */
 
     /*     * **********************Getteur Setteur*************************** */
+
+
+    public function updatePluieJournee()
+    {
+        return rand(1,20);
+    }
 }
 
 class calcul_arrosageCmd extends cmd {
@@ -143,7 +149,15 @@ class calcul_arrosageCmd extends cmd {
      */
 
     public function execute($_options = array()) {
-        
+        $eqlogic = $this->getEqLogic(); // Récupération de l’eqlogic
+        switch ($this->getLogicalId()) {				
+            case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe vdm . 
+            // code pour rafraîchir ma commande
+            
+            $info = $eqlogic-> updatePluieJournee() ; //Lance la fonction et stocke le résultat dans la variable $info
+            $eqlogic->checkAndUpdateCmd('PluieJournee', $info);
+            break;
+        }
     }
 
     /*     * **********************Getteur Setteur*************************** */
