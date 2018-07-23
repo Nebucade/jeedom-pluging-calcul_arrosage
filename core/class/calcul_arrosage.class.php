@@ -33,7 +33,17 @@ class calcul_arrosage extends eqLogic {
       }
      */
 
-
+    public static function cron15() {
+        foreach (self::byType('calcul_arrosage') as $calcul_arrosage) {//parcours tous les équipements du plugin vdm
+            if ($calcul_arrosage->getIsEnable() == 1) {//vérifie que l'équipement est actif
+                $cmd = $calcul_arrosage->getCmd(null, 'refresh');//retourne la commande "refresh si elle existe
+                if (!is_object($cmd)) {//Si la commande n'existe pas
+                    continue; //continue la boucle
+                }
+                $cmd->execCmd(); // la commande existe on la lance
+            }
+        }
+    }
     /*
      * Fonction exécutée automatiquement toutes les heures par Jeedom
       public static function cronHourly() {
