@@ -138,14 +138,20 @@ class calcul_arrosage extends eqLogic {
 
     public function updatePluieJournee()  
     {
-        log::add("calcul_arrosage","info","Value of ID Condition Param :".config::byKey("paramIdCondition","calcul_arrosage"));
-        /*event::add('jeedom::alert', array(
-                        'level' => 'warning',
-                        'page' => 'blea',
-                        'message' => __('Nouveau module detecté ' . $_def['type'], __FILE__),
-                ));*/
-        return config::byKey("paramIdCondition","calcul_arrosage");//intval($this->getConfiguration("paramIdCondition"));
-
+        if (is_numeric(config::byKey("paramIdCondition","calcul_arrosage")))
+        {
+            log::add("calcul_arrosage","info","Value of ID Condition Param :".config::byKey("paramIdCondition","calcul_arrosage"));
+            /*event::add('jeedom::alert', array(
+                            'level' => 'warning',
+                            'page' => 'blea',
+                            'message' => __('Nouveau module detecté ' . $_def['type'], __FILE__),
+                    ));*/
+            return config::byKey("paramIdCondition","calcul_arrosage");//intval($this->getConfiguration("paramIdCondition"));
+        }
+        else{
+            log::add("calcul_arrosage","error","Value of ID Condition Param is not an ID");
+            
+        }
 
     }
 }
