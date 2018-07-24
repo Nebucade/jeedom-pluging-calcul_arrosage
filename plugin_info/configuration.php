@@ -65,7 +65,7 @@ if (!isConnect()) {
 								</a>
 							</span>
 						</div>
-						<input type="text" class="configKey"  data-l1key="conditionActuel" />
+						
 					</div>
                 </div>
                 <div class="form-group">
@@ -79,7 +79,7 @@ if (!isConnect()) {
 								</a>
 							</span>
 						</div>
-						<input type="text" class="configKey"  data-l1key="tempActuel" />
+						
 					</div>
                 </div>
             </fieldset>
