@@ -138,14 +138,14 @@ class calcul_arrosage extends eqLogic {
 
     public function updatePluieJournee()  
     {
-        log::add("calcul_arrosage","info","Value of ID Condition Param :".config::byKey("cmdConditionActuel","calcul_arrosage"));
+        log::add("calcul_arrosage","info"," ID Condition Param :".config::byKey("cmdConditionActuel","calcul_arrosage"));
             
-        log::add("calcul_arrosage","info","Value of Condition actuel :".config::byKey("conditionActuel","calcul_arrosage"));
+        //log::add("calcul_arrosage","info","Value of Condition actuel :".config::byKey("conditionActuel","calcul_arrosage"));
         
         
         if (config::byKey("cmdConditionActuel","calcul_arrosage") != "")
         {
-            log::add("calcul_arrosage","info","Value of ID Condition Param :".config::byKey("cmdConditionActuel","calcul_arrosage"));
+            log::add("calcul_arrosage","info","Value of ID Condition Param :".jeedom::evaluateExpression(config::byKey("cmdConditionActuel","calcul_arrosage")));
             /*event::add('jeedom::alert', array(
                             'level' => 'warning',
                             'page' => 'blea',
