@@ -49,13 +49,13 @@ if (!isConnect()) {
     die();
 }
 ?>
-<div class="col-sm-1">
+<div class="col-sm-12">
     <legend>{{Météo}}</legend>
     <form class="form-horizontal">
 			<fieldset>
 				<div class="form-group">
-					<label class="col-lg-5 control-label">{{Météo actuel}}</label>
-					<div class="col-lg-6">
+					<label class="col-lg-3 control-label">{{Météo actuel}}</label>
+					<div class="col-lg-9">
 						<div class="input-group">
 							<input class="configKey form-control input-sm" data-l1key="cmdConditionActuel"/>
 							<span class="input-group-btn">
