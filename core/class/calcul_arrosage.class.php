@@ -144,7 +144,7 @@ class calcul_arrosage extends eqLogic {
                         'page' => 'blea',
                         'message' => __('Nouveau module detecté ' . $_def['type'], __FILE__),
                 ));*/
-        return intval($this->getConfiguration("paramIdCondition"));
+        return config::byKey("paramIdCondition","calcul_arrosage");//intval($this->getConfiguration("paramIdCondition"));
 
 
     }
