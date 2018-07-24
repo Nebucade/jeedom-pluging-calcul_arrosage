@@ -138,17 +138,17 @@ class calcul_arrosage extends eqLogic {
 
     public function updatePluieJournee()  
     {
-        if (is_numeric(config::byKey("paramIdCondition","calcul_arrosage")))
+        if (is_numeric(config::byKey("cmdConditionActuel","calcul_arrosage")))
         {
-            log::add("calcul_arrosage","info","Value of ID Condition Param :".config::byKey("paramIdCondition","calcul_arrosage"));
+            log::add("calcul_arrosage","info","Value of ID Condition Param :".config::byKey("cmdConditionActuel","calcul_arrosage"));
             /*event::add('jeedom::alert', array(
                             'level' => 'warning',
                             'page' => 'blea',
                             'message' => __('Nouveau module detecté ' . $_def['type'], __FILE__),
                     ));*/
 
-                    $eqLogic = eqLogic::byObjectId(30);
-                    log::add("calcul_arrosage","info","Name :".$eqLogic->getName());
+                    //$eqLogic = eqLogic::byObjectId(30);
+                    //log::add("calcul_arrosage","info","Name :".$eqLogic->getName());
             
 	 /*
                         if ($eqLogic->getConfiguration('id') == $key['haId']) {
@@ -158,7 +158,7 @@ class calcul_arrosage extends eqLogic {
                         }
                     }*/
 
-            return config::byKey("paramIdCondition","calcul_arrosage");//intval($this->getConfiguration("paramIdCondition"));
+            return config::byKey("cmdConditionActuel","calcul_arrosage");//intval($this->getConfiguration("paramIdCondition"));
         }
         else{
             log::add("calcul_arrosage","error","Value of ID Condition Param is not an ID");
