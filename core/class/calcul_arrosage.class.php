@@ -148,7 +148,7 @@ class calcul_arrosage extends eqLogic {
                     ));*/
 
                     $eqLogic = eqLogic::byObjectId(30);
-                    log::add("calcul_arrosage","info","Name :".$eqLogic->name);
+                    log::add("calcul_arrosage","info","Name :".$eqLogic->getName());
             
 	 /*
                         if ($eqLogic->getConfiguration('id') == $key['haId']) {
