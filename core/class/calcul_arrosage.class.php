@@ -138,6 +138,7 @@ class calcul_arrosage extends eqLogic {
 
     public function updatePluieJournee()
     {
+        log::add("calcul_arrosage","debug","test");
         return $this->getConfiguration("paramIdCondition");
 
 
