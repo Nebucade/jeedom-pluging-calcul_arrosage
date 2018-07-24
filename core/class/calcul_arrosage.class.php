@@ -146,6 +146,18 @@ class calcul_arrosage extends eqLogic {
                             'page' => 'blea',
                             'message' => __('Nouveau module detecté ' . $_def['type'], __FILE__),
                     ));*/
+
+                    $eqLogic = eqLogic::byObjectId(30);
+                    log::add("calcul_arrosage","info","Name :".$eqLogic->name);
+            
+	 /*
+                        if ($eqLogic->getConfiguration('id') == $key['haId']) {
+                            $eqLogic->checkAndUpdateCmd('connected', $key['connected']);
+                        
+                        log::add('homeconnect', 'debug', "Retour : MAJ statut connecté (".$key['connected'].") de la machine ".$key['type']." - ".$key['brand']." - ".$key['vib'].").");
+                        }
+                    }*/
+
             return config::byKey("paramIdCondition","calcul_arrosage");//intval($this->getConfiguration("paramIdCondition"));
         }
         else{
