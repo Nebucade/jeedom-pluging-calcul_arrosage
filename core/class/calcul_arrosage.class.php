@@ -158,7 +158,7 @@ class calcul_arrosage extends eqLogic {
         {
             //$eqlogic = $this->getEqLogic();
             log::add("calcul_arrosage","info","Value of ID Condition Param :".jeedom::evaluateExpression(config::byKey("cmdConditionActuel","calcul_arrosage")));
-            log::add("calcul_arrosage","info","Last Value of Condition :".var_dump($this->getCmd('PluieJournee')));
+            log::add("calcul_arrosage","info","Last Value of Condition :".var_dump($this->getCmd(null,'PluieJournee')));
             /*foreach ($this->getCmd('PluieJournee') as $toto)
             {
                 log::add("calcul_arrosage","info","Last Value of Condition :".$this->getCmd('PluieJournee').[$toto]);
