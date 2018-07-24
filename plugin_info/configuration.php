@@ -54,20 +54,7 @@ if (!isConnect()) {
     <legend>{{Météo}}</legend>
     <form class="form-horizontal">
 			<fieldset>
-				<div class="form-group">
-					<label class="col-lg-5 control-label">{{Météo actuel}}</label>
-					<div class="col-lg-6">
-						<div class="input-group">
-							<input class="configKey form-control input-sm" data-l1key="cmdConditionActuel"/>
-							<span class="input-group-btn">
-								<a class="btn btn-success btn-sm listAction">
-									<i class="fa fa-list-alt"></i>
-								</a>
-							</span>
-						</div>
-						
-					</div>
-                </div>
+				
                 <div class="form-group">
 					<label class="col-lg-5 control-label">{{Météo temeratuel actuel}}</label>
 					<div class="col-lg-6">
