@@ -65,10 +65,9 @@ if (!isConnect()) {
 								</a>
 							</span>
 						</div>
-						
+						<input type="text" class="configKey"  data-l1key="conditionActuel" />
 					</div>
                 </div>
-                
             </fieldset>
     </form>
 </div>
