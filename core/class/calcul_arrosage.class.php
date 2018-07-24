@@ -141,18 +141,7 @@ class calcul_arrosage extends eqLogic {
         log::add("calcul_arrosage","info","Update condition de la journée");
             
         //log::add("calcul_arrosage","info","Value of Condition actuel :".config::byKey("conditionActuel","calcul_arrosage"));
-        /*
-        Type de condition
-
-        200 -> Orage 
-        300 -> Brouillard
-        500 -> nuage soleil pluie
-        520 -> pluie 
-        600 -> neige
-        700 -> vent
-        800 -> soleil
-
-        */
+        
         
         if (config::byKey("cmdConditionActuel","calcul_arrosage") != "")
         {
@@ -161,6 +150,35 @@ class calcul_arrosage extends eqLogic {
             //log::add("calcul_arrosage","info","Last Value of Condition :".var_dump($this->getCmd(null,'PluieJournee')->execCmd()));
             log::add("calcul_arrosage","info","Last Value of Condition :".$this->getCmd(null,'PluieJournee')->execCmd());
             
+            $lastValueOfRain = $this->getCmd(null,'PluieJournee')->execCmd();
+            $newValueOfMeteo = jeedom::evaluateExpression(config::byKey("cmdConditionActuel","calcul_arrosage"));
+            /*
+                    Type de condition
+
+                    200 -> Orage 
+                    300 -> Brouillard
+                    500 -> nuage soleil pluie
+                    520 -> pluie 
+                    600 -> neige
+                    700 -> vent
+                    800 -> soleil
+
+                    */
+            if ($newValueOfMeteo  >= 800)
+            {return $lastValueOfRain;}
+            if ($newValueOfMeteo  >= 700)
+            {return $lastValueOfRain;}
+            if ($newValueOfMeteo  >= 600)
+            {return $lastValueOfRain + 1;}
+            if ($newValueOfMeteo  >= 520)
+            {return $lastValueOfRain+1;}
+            if ($newValueOfMeteo  >= 300)
+            {return $lastValueOfRain;}
+            if ($newValueOfMeteo  >= 200)
+            {return $lastValueOfRain +1;}
+            
+            return $lastValueOfRain;
+
             /*foreach ($this->getCmd('PluieJournee') as $toto)
             {
                 log::add("calcul_arrosage","info","Last Value of Condition :".$this->getCmd('PluieJournee').[$toto]);
