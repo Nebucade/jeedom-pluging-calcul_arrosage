@@ -50,7 +50,7 @@ if (!isConnect()) {
     die();
 }
 ?>
-<div class="col-sm-1">
+<div class="col-sm-12">
     <legend>{{Météo}}</legend>
     <form class="form-horizontal">
 			<fieldset>
