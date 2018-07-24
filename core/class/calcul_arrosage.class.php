@@ -140,7 +140,10 @@ class calcul_arrosage extends eqLogic {
     {
         log::add("calcul_arrosage","info","Value of ID Condition Param :".config::byKey("cmdConditionActuel","calcul_arrosage"));
             
-        if (is_numeric(config::byKey("cmdConditionActuel","calcul_arrosage")))
+        log::add("calcul_arrosage","info","Value of Condition actuel :".config::byKey("conditionActuel","calcul_arrosage"));
+        
+        
+        if (config::byKey("cmdConditionActuel","calcul_arrosage") != "")
         {
             log::add("calcul_arrosage","info","Value of ID Condition Param :".config::byKey("cmdConditionActuel","calcul_arrosage"));
             /*event::add('jeedom::alert', array(
