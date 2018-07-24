@@ -42,7 +42,6 @@
   </fieldset>
 </form>*/
 
-
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 include_file('core', 'authentification', 'php');
 if (!isConnect()) {
@@ -50,7 +49,7 @@ if (!isConnect()) {
     die();
 }
 ?>
-<div class="col-sm-12">
+<div class="col-sm-1">
     <legend>{{Météo}}</legend>
     <form class="form-horizontal">
 			<fieldset>
