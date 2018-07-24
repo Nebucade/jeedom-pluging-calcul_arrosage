@@ -138,6 +138,8 @@ class calcul_arrosage extends eqLogic {
 
     public function updatePluieJournee()  
     {
+        log::add("calcul_arrosage","info","Value of ID Condition Param :".config::byKey("cmdConditionActuel","calcul_arrosage"));
+            
         if (is_numeric(config::byKey("cmdConditionActuel","calcul_arrosage")))
         {
             log::add("calcul_arrosage","info","Value of ID Condition Param :".config::byKey("cmdConditionActuel","calcul_arrosage"));
