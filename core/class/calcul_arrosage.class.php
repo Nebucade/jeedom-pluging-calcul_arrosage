@@ -138,7 +138,7 @@ class calcul_arrosage extends eqLogic {
 
     public function updatePluieJournee()  
     {
-        log::add("calcul_arrosage","debug","Value of ID Condition Param :".$this->getConfiguration("paramIdCondition"));
+        log::add("calcul_arrosage","error","Value of ID Condition Param :".$this->getConfiguration("paramIdCondition"));
         /*event::add('jeedom::alert', array(
                         'level' => 'warning',
                         'page' => 'blea',
