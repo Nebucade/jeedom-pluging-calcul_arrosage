@@ -53,20 +53,20 @@ if (!isConnect()) {
     <legend>{{Météo}}</legend>
     <form class="form-horizontal">
 			<fieldset>
-				<div class="form-group">
-					<label class="col-lg-3 control-label">{{Météo actuel}}</label>
-					<div class="col-lg-9">
+            <div class="form-group">
+					<label class="col-lg-5 control-label">{{Maximum de la probabilité de précipitation (%)}}</label>
+					<div class="col-lg-6">
 						<div class="input-group">
-							<input class="configKey form-control input-sm" data-l1key="cmdConditionActuel"/>
+							<input class="configKey form-control input-sm" data-l1key="cmdPrecipProbability"/>
 							<span class="input-group-btn">
 								<a class="btn btn-success btn-sm listAction">
 									<i class="fa fa-list-alt"></i>
 								</a>
 							</span>
 						</div>
-						<input type="text" class="configKey"  data-l1key="conditionActuel" />
+						<input type="text" class="configKey"  data-l1key="precipProbability" />
 					</div>
-                </div>
+				</div>
             </fieldset>
     </form>
 </div>
