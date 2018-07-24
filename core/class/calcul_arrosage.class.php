@@ -156,6 +156,7 @@ class calcul_arrosage extends eqLogic {
         
         if (config::byKey("cmdConditionActuel","calcul_arrosage") != "")
         {
+            $eqlogic = $this->getEqLogic();
             log::add("calcul_arrosage","info","Value of ID Condition Param :".jeedom::evaluateExpression(config::byKey("cmdConditionActuel","calcul_arrosage")));
             log::add("calcul_arrosage","info","Last Value of Condition :".$eqlogic->byLogicalId('PluieJournee'));
             
