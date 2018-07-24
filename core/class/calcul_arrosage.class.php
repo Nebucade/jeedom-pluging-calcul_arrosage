@@ -84,7 +84,18 @@ class calcul_arrosage extends eqLogic {
         $info->setEqLogic_id($this->getId());
         $info->setType('info');
         $info->setSubType('numeric');
-        $info->save();	
+        $info->save();
+        
+        $info = $this->getCmd(null, 'TemperatureMax');
+        if (!is_object($info)) {
+            $info = new calcul_arrosageCmd();
+            $info->setName(__('Temperature Max', __FILE__));
+        }
+        $info->setLogicalId('TemperatureMax');
+        $info->setEqLogic_id($this->getId());
+        $info->setType('info');
+        $info->setSubType('numeric');
+        $info->save();
         
         $refresh = $this->getCmd(null, 'refresh');
         if (!is_object($refresh)) {
