@@ -136,9 +136,14 @@ class calcul_arrosage extends eqLogic {
     /*     * **********************Getteur Setteur*************************** */
 
 
-    public function updatePluieJournee()
+    public function updatePluieJournee()  
     {
-        log::add("calcul_arrosage","debug","test");
+        log::add("calcul_arrosage","error","test");
+        event::add('jeedom::alert', array(
+                        'level' => 'warning',
+                        'page' => 'blea',
+                        'message' => __('Nouveau module detecté ' . $_def['type'], __FILE__),
+                ));
         return $this->getConfiguration("paramIdCondition");
 
 
