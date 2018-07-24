@@ -138,14 +138,31 @@ class calcul_arrosage extends eqLogic {
 
     public function updatePluieJournee()  
     {
-        log::add("calcul_arrosage","info"," ID Condition Param :".config::byKey("cmdConditionActuel","calcul_arrosage"));
+        log::add("calcul_arrosage","info","Update condition de la journée");
             
         //log::add("calcul_arrosage","info","Value of Condition actuel :".config::byKey("conditionActuel","calcul_arrosage"));
-        
+        /*
+        Type de condition
+
+        200 -> Orage 
+        300 -> Brouillard
+        500 -> nuage soleil pluie
+        520 -> pluie 
+        600 -> neige
+        700 -> vent
+        800 -> soleil
+
+        */
         
         if (config::byKey("cmdConditionActuel","calcul_arrosage") != "")
         {
             log::add("calcul_arrosage","info","Value of ID Condition Param :".jeedom::evaluateExpression(config::byKey("cmdConditionActuel","calcul_arrosage")));
+            log::add("calcul_arrosage","info","Last Value of Condition :".$eqlogic->byLogicalId('PluieJournee'));
+            
+            
+
+            //$eqlogic->checkAndUpdateCmd('PluieJournee', $info);
+            
             /*event::add('jeedom::alert', array(
                             'level' => 'warning',
                             'page' => 'blea',
@@ -163,7 +180,7 @@ class calcul_arrosage extends eqLogic {
                         }
                     }*/
 
-            return config::byKey("cmdConditionActuel","calcul_arrosage");//intval($this->getConfiguration("paramIdCondition"));
+            return 100; //config::byKey("cmdConditionActuel","calcul_arrosage");//intval($this->getConfiguration("paramIdCondition"));
         }
         else{
             log::add("calcul_arrosage","error","Value of ID Condition Param is not an ID");
