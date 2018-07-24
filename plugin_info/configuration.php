@@ -79,7 +79,7 @@ if (!isConnect()) {
 								</a>
 							</span>
 						</div>
-						<input type="text" class="configKey"  data-l1key="TempActuel" />
+						<input type="text" class="configKey"  data-l1key="tempActuel" />
 					</div>
                 </div>
             </fieldset>
