@@ -6,114 +6,26 @@
 		die();
 	}
 ?>
-<div class="row">
-	<div class="col-sm-6">
-		<legend>{{Source d'eau}}</legend>
-		<form class="form-horizontal">
+<div class="col-sm-12">
+    <legend>{{Météo}}</legend>
+    <form class="form-horizontal">
 			<fieldset>
 				<div class="form-group">
-					<label class="col-lg-5 control-label">{{Temps entre 2 branches arrosages}}</label>
-					<div class="col-lg-6">
-						<input type="text" class="configKey"  data-l1key="temps" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-5 control-label">{{Débit de l'arrivée d'eau (mm ou L/H)}}</label>
-					<div class="col-lg-6">
-						<input type="text" class="configKey"  data-l1key="debit" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-5 control-label">{{Pression maximal de l'arrivée d'eau (bar)}}</label>
-					<div class="col-lg-6">
-						<input type="text" class="configKey"  data-l1key="pression" />
-					</div>
-				</div>
-			</fieldset>
-		</form>
-	</div>
-	<div class="col-sm-6">
-		<legend>{{Météo}}</legend>
-		<form class="form-horizontal">
-			<fieldset>
-				<div class="form-group">
-					<label class="col-lg-5 control-label">{{Maximum de la probabilité de précipitation (%)}}</label>
+					<label class="col-lg-5 control-label">{{Météo actuel}}</label>
 					<div class="col-lg-6">
 						<div class="input-group">
-							<input class="configKey form-control input-sm" data-l1key="cmdPrecipProbability"/>
+							<input class="configKey form-control input-sm" data-l1key="cmdConditionActuel"/>
 							<span class="input-group-btn">
 								<a class="btn btn-success btn-sm listAction">
 									<i class="fa fa-list-alt"></i>
 								</a>
 							</span>
 						</div>
-						<input type="text" class="configKey"  data-l1key="precipProbability" />
+						<input type="text" class="configKey"  data-l1key="conditionActuel" />
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-5 control-label">{{Vitesse du vent maximum (km/h)}}</label>
-					<div class="col-lg-6">
-						<div class="input-group">
-							<input class="configKey form-control input-sm" data-l1key="cmdWindSpeed"/>
-							<span class="input-group-btn">
-								<a class="btn btn-success btn-sm listAction">
-									<i class="fa fa-list-alt"></i>
-								</a>
-							</span>
-						</div>
-						<input type="text" class="configKey"  data-l1key="windSpeed" />
-					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-lg-5 control-label">{{Humidité maximum (%)}}</label>
-					<div class="col-lg-6">
-						<div class="input-group">
-							<input class="configKey form-control input-sm" data-l1key="cmdHumidity"/>
-							<span class="input-group-btn">
-								<a class="btn btn-success btn-sm listAction">
-									<i class="fa fa-list-alt"></i>
-								</a>
-							</span>
-						</div>
-						<input type="text" class="configKey"  data-l1key="humidity" />
-					</div>
-				</div>				
-				<div class="form-group">
-					<label class="col-lg-5 control-label">{{Précipitation de la veille}}</label>
-					<div class="col-lg-6">
-						<div class="input-group">
-							<input class="configKey form-control input-sm" data-l1key="cmdPrecipitation"/>
-							<span class="input-group-btn">
-								<a class="btn btn-success btn-sm listAction">
-									<i class="fa fa-list-alt"></i>
-								</a>
-							</span>
-						</div>
-					</div>
-				</div>
-			</fieldset>
-		</form>
-	</div>
-	 <div class="col-sm-6">
-		<legend>{{Type de plantation}}
-			<a class="btn btn-success btn-xs pull-right cursor" id="bt_AddTypePlantation"><i class="fa fa-check"></i> {{Ajouter}}</a>
-		</legend>
-		<form class="form-horizontal">
-			<fieldset>
-				<div class="form-group">
-					<table id="table_type_plantation" class="table table-bordered table-condensed tablesorter">
-						<thead>
-							<tr>
-								<th>{{Type de plantation}}</th>
-								<th>{{Pluviometerie (mm)}}</th>
-							</tr>
-						</thead>
-						<tbody></tbody>
-					</table>
-				</div>
-			</fieldset>
-		</form>
-	</div>
+                </div>
+            </fieldset>
+    </form>
 </div>
 
 <script>
