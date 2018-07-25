@@ -71,3 +71,4 @@ if (!isConnect()) {
     </form>
 </div>
 
+<?php include_file('core', 'plugin.template', 'js');?>
