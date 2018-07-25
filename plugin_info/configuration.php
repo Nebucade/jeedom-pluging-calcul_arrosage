@@ -1,59 +1,43 @@
+
 <?php
-/* This file is part of Jeedom.
- *
- * Jeedom is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Jeedom is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with Jeedom. If not, see <http://www.gnu.org/licenses/>.
- */
-
- /*
-<form class="form-horizontal">
-    <fieldset>
-        <div class="form-group">
-            <label class="col-lg-4 control-label">ID condition</label>
-            <div class="col-lg-2">
-                <input class="configKey form-control" data-l1key="paramIdCondition" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-4 control-label">{{Global param 2}}</label>
-            <div class="col-lg-2">
-                <input class="configKey form-control" data-l1key="param2" value="80" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-4 control-label">{{Global param 2}}</label>
-            <div class="col-lg-2">
-                <select class="configKey form-control" data-l1key="param3">
-                    <option value="value1">value1</option>
-                    <option value="value2">value2</option>
-                </select>
-            </div>
-        </div>
-  </fieldset>
-</form>*/
-
-require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
-include_file('core', 'authentification', 'php');
-if (!isConnect()) {
-    include_file('desktop', '404', 'php');
-    die();
-}
+	require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
+	include_file('core', 'authentification', 'php');
+	if (!isConnect()) {
+		include_file('desktop', '404', 'php');
+		die();
+	}
 ?>
-<div class="col-sm-12">
-    <legend>{{Météo}}</legend>
-    <form class="form-horizontal">
+<div class="row">
+	<div class="col-sm-6">
+		<legend>{{Source d'eau}}</legend>
+		<form class="form-horizontal">
 			<fieldset>
-            <div class="form-group">
+				<div class="form-group">
+					<label class="col-lg-5 control-label">{{Temps entre 2 branches arrosages}}</label>
+					<div class="col-lg-6">
+						<input type="text" class="configKey"  data-l1key="temps" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-5 control-label">{{Débit de l'arrivée d'eau (mm ou L/H)}}</label>
+					<div class="col-lg-6">
+						<input type="text" class="configKey"  data-l1key="debit" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-5 control-label">{{Pression maximal de l'arrivée d'eau (bar)}}</label>
+					<div class="col-lg-6">
+						<input type="text" class="configKey"  data-l1key="pression" />
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<div class="col-sm-6">
+		<legend>{{Météo}}</legend>
+		<form class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
 					<label class="col-lg-5 control-label">{{Maximum de la probabilité de précipitation (%)}}</label>
 					<div class="col-lg-6">
 						<div class="input-group">
@@ -67,8 +51,154 @@ if (!isConnect()) {
 						<input type="text" class="configKey"  data-l1key="precipProbability" />
 					</div>
 				</div>
-            </fieldset>
-    </form>
+				<div class="form-group">
+					<label class="col-lg-5 control-label">{{Vitesse du vent maximum (km/h)}}</label>
+					<div class="col-lg-6">
+						<div class="input-group">
+							<input class="configKey form-control input-sm" data-l1key="cmdWindSpeed"/>
+							<span class="input-group-btn">
+								<a class="btn btn-success btn-sm listAction">
+									<i class="fa fa-list-alt"></i>
+								</a>
+							</span>
+						</div>
+						<input type="text" class="configKey"  data-l1key="windSpeed" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-lg-5 control-label">{{Humidité maximum (%)}}</label>
+					<div class="col-lg-6">
+						<div class="input-group">
+							<input class="configKey form-control input-sm" data-l1key="cmdHumidity"/>
+							<span class="input-group-btn">
+								<a class="btn btn-success btn-sm listAction">
+									<i class="fa fa-list-alt"></i>
+								</a>
+							</span>
+						</div>
+						<input type="text" class="configKey"  data-l1key="humidity" />
+					</div>
+				</div>				
+				<div class="form-group">
+					<label class="col-lg-5 control-label">{{Précipitation de la veille}}</label>
+					<div class="col-lg-6">
+						<div class="input-group">
+							<input class="configKey form-control input-sm" data-l1key="cmdPrecipitation"/>
+							<span class="input-group-btn">
+								<a class="btn btn-success btn-sm listAction">
+									<i class="fa fa-list-alt"></i>
+								</a>
+							</span>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	 <div class="col-sm-6">
+		<legend>{{Type de plantation}}
+			<a class="btn btn-success btn-xs pull-right cursor" id="bt_AddTypePlantation"><i class="fa fa-check"></i> {{Ajouter}}</a>
+		</legend>
+		<form class="form-horizontal">
+			<fieldset>
+				<div class="form-group">
+					<table id="table_type_plantation" class="table table-bordered table-condensed tablesorter">
+						<thead>
+							<tr>
+								<th>{{Type de plantation}}</th>
+								<th>{{Pluviometerie (mm)}}</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+			</fieldset>
+		</form>
+	</div>
 </div>
-
-<?php include_file('core', 'plugin.template', 'js');?>
+<script>
+	$("body").on('click', ".listAction", function() {
+		var el = $(this).closest('.input-group').find('input');
+		jeedom.cmd.getSelectModal({}, function (result) {
+			el.value(result.human);
+		});
+	});
+	$.ajax({
+		type: "POST",
+		timeout:8000,
+		url: "core/ajax/config.ajax.php",
+		data: {
+			action:'getKey',
+			key:'{"configuration":""}',
+			plugin:'arrosageAuto',
+		},
+		dataType: 'json',
+		error: function(request, status, error) {
+			handleAjaxError(request, status, error);
+		},
+		success: function(data) {
+			if (data.state != 'ok') {
+				$('#div_alert').showAlert({message: data.result, level: 'danger'});
+				return;
+			}
+			if (data.result['configuration']!=''){
+				var TypePlantation= new Object();
+				$.each(data.result['configuration'], function(param,valeur){
+					switch(typeof(valeur)){
+						case 'object':
+							$.each(valeur, function(TypePlantationkey,value ){
+								if (typeof(TypePlantation[TypePlantationkey]) === 'undefined')
+									TypePlantation[TypePlantationkey]= new Object();
+								if (typeof(TypePlantation[TypePlantationkey]['configuration']) === 'undefined')
+									TypePlantation[TypePlantationkey]['configuration']= new Object();
+								TypePlantation[TypePlantationkey]['configuration'][param]=value;
+							});
+						break;
+						case 'string':
+							if (typeof(TypePlantation[0]) === 'undefined')
+								TypePlantation[0]= new Object();
+							if (typeof(TypePlantation[0]['configuration']) === 'undefined')
+								TypePlantation[0]['configuration']= new Object();
+							TypePlantation[0]['configuration'][param]=valeur;
+						break;
+					}
+				});
+				$.each(TypePlantation, function(id,data){
+					AddTypePlantation($('#table_type_plantation tbody'),data);
+				});
+			}
+		}
+	});
+	$('#bt_AddTypePlantation').on('click',function(){
+		AddTypePlantation($('#table_type_plantation tbody'),'');
+	});
+	$('body').on('click','#bt_RemoveTypePlantation',function(){
+		$(this).closest('tr').remove();
+	});
+	function AddTypePlantation(_el,data){
+		var tr=$('<tr>')
+			.append($('<td>')
+				.append($('<div class="input-group">')
+					.append($('<span class="input-group-btn">')
+						.append($('<a class="btn btn-default btn-sm bt_RemoveTypePlantation">')
+							.append($('<i class="fa fa-minus-circle">'))))
+					.append($('<input class="configKey form-control input-sm "data-l1key="configuration" data-l2key="type">'))))
+			.append($('<td>')
+				.append($('<input class="configKey form-control input-sm" data-l1key="configuration" data-l2key="volume">')));
+		_el.append(tr);
+		_el.find('tr:last').setValues(data, '.configKey');
+	}
+</script>
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
+Press h to open a hovercard with more details.
