@@ -22,7 +22,23 @@
 							</span>
 						</div>
 						<input type="text" class="configKey"  data-l1key="conditionActuel" />
-					</div>
+                    </div>
+                    
+                </div>
+                <div class="form-group">
+					<label class="col-lg-5 control-label">{{Temperature actuel}}</label>
+					<div class="col-lg-6">
+						<div class="input-group">
+							<input class="configKey form-control input-sm" data-l1key="cmdTemperatureActuel"/>
+							<span class="input-group-btn">
+								<a class="btn btn-success btn-sm listAction">
+									<i class="fa fa-list-alt"></i>
+								</a>
+							</span>
+						</div>
+						<input type="text" class="configKey"  data-l1key="temperatureActuel" />
+                    </div>
+                    
                 </div>
             </fieldset>
     </form>
