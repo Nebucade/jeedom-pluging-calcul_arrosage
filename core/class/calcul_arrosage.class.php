@@ -178,7 +178,9 @@ class calcul_arrosage extends eqLogic {
             log::add("calcul_arrosage","debug","Set value :".$tempActule);
             if ($tempActule>$tempMaxActuel)
             {
+                log::add("calcul_arrosage","debug","4");
                 $eqlogic->checkAndUpdateCmd('TemperatureMax', $tempActule);
+                log::add("calcul_arrosage","debug","5");
             }
             log::add("calcul_arrosage","info","New Temperature max :".$this->getCmd(null,'TemperatureMax')->execCmd());
         }
