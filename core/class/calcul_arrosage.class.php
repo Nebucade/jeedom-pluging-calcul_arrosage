@@ -162,6 +162,10 @@ class calcul_arrosage extends eqLogic {
             log::add("calcul_arrosage","info","Last Value of Condition :".$this->getCmd(null,'PluieJournee')->execCmd());
             
             $lastValueOfRain = $this->getCmd(null,'PluieJournee')->execCmd();
+            if ($lastValueOfRain == null)
+            {
+                $lastValueOfRain = 0;
+            }
             $newValueOfMeteo = jeedom::evaluateExpression(config::byKey("cmdConditionActuel","calcul_arrosage"));
             /*
                     Type de condition
