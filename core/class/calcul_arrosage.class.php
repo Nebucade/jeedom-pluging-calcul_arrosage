@@ -172,8 +172,8 @@ class calcul_arrosage extends eqLogic {
             log::add("calcul_arrosage","debug","2");
             if ($tempActule == null || $tempActule == "")
             {
-                $tempActule = 0;
-                $this->checkAndUpdateCmd('TemperatureMax', $tempActule);
+                $tempMaxActuel = 0;
+                
             }
             log::add("calcul_arrosage","debug","3");
             log::add("calcul_arrosage","debug","Set value :".$tempActule);
@@ -201,8 +201,8 @@ class calcul_arrosage extends eqLogic {
 
             if ($tempActule == null || $tempActule == "")
             {
-                $tempActule = 100;
-                $this->checkAndUpdateCmd('TemperatureMin', $tempActule);
+                $tempMinActuel = 100;
+              
             }
 
             if ($tempActule<$tempMinActuel)
