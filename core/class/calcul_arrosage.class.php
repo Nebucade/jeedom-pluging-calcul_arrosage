@@ -204,9 +204,10 @@ class calcul_arrosage extends eqLogic {
                 $tempMinActuel = 100;
               
             }
-
+            log::add("calcul_arrosage","debug","Min value is :".$tempMinActuel);
             if ($tempActuel<$tempMinActuel)
             {
+                log::add("calcul_arrosage","debug","Set value :".$tempActuel);
                 $this->checkAndUpdateCmd('TemperatureMin', $tempActuel);
             }
 
