@@ -167,19 +167,21 @@ class calcul_arrosage extends eqLogic {
         {
             log::add("calcul_arrosage","info","Last Temperature max :".$this->getCmd(null,'TemperatureMax')->execCmd());
             $tempMaxActuel  = $this->getCmd(null,'TemperatureMax')->execCmd();
+            log::add("calcul_arrosage","debug","1");
             $tempActule = jeedom::evaluateExpression(config::byKey("cmdTemperatureActuel","calcul_arrosage"));
-
+            log::add("calcul_arrosage","debug","2");
             if ($tempActule == null || $tempActule == "")
             {
                 $tempActule = 0;
             }
-
+            log::add("calcul_arrosage","debug","3");
             if ($tempActule>$tempMaxActuel)
             {
                 $eqlogic->checkAndUpdateCmd('TemperatureMax', $tempActule);
             }
             log::add("calcul_arrosage","info","New Temperature max :".$this->getCmd(null,'TemperatureMax')->execCmd());
         }
+        return ;
     }
 
     public function updateTemperatureMin()
@@ -190,7 +192,7 @@ class calcul_arrosage extends eqLogic {
         if (config::byKey("cmdTemperatureActuel","calcul_arrosage") != "")
         {
             log::add("calcul_arrosage","info","Last Temperature min :".$this->getCmd(null,'TemperatureMin')->execCmd());
-            $tempMaxActuel  = $this->getCmd(null,'TemperatureMin')->execCmd();
+            $tempMinActuel  = $this->getCmd(null,'TemperatureMin')->execCmd();
             $tempActule = jeedom::evaluateExpression(config::byKey("cmdTemperatureActuel","calcul_arrosage"));
 
             if ($tempActule == null || $tempActule == "")
@@ -198,7 +200,7 @@ class calcul_arrosage extends eqLogic {
                 $tempActule = 100;
             }
 
-            if ($tempActule>$tempMaxActuel)
+            if ($tempActule<$tempMinActuel)
             {
                 $eqlogic->checkAndUpdateCmd('TemperatureMin', $tempActule);
             }
@@ -206,6 +208,7 @@ class calcul_arrosage extends eqLogic {
             log::add("calcul_arrosage","info","New Temperature min :".$this->getCmd(null,'TemperatureMin')->execCmd());
 
         }
+        return ;
     }
 
     public function updatePluieJournee()  
@@ -253,37 +256,11 @@ class calcul_arrosage extends eqLogic {
             if ($newValueOfMeteo  >= 200)
             {return $lastValueOfRain +1;}
             
-            return $lastValueOfRain;
+            $eqlogic->checkAndUpdateCmd('PluieJournee', $lastValueOfRain);
+            return ;
 
-            /*foreach ($this->getCmd('PluieJournee') as $toto)
-            {
-                log::add("calcul_arrosage","info","Last Value of Condition :".$this->getCmd('PluieJournee').[$toto]);
-            }*/
-            
-            
-            
-
-            //$eqlogic->checkAndUpdateCmd('PluieJournee', $info);
-            
-            /*event::add('jeedom::alert', array(
-                            'level' => 'warning',
-                            'page' => 'blea',
-                            'message' => __('Nouveau module detecté ' . $_def['type'], __FILE__),
-                    ));*/
-
-                    //$eqLogic = eqLogic::byObjectId(30);
-                    //log::add("calcul_arrosage","info","Name :".$eqLogic->getName());
-            
-	 /*
-                        if ($eqLogic->getConfiguration('id') == $key['haId']) {
-                            $eqLogic->checkAndUpdateCmd('connected', $key['connected']);
-                        
-                        log::add('homeconnect', 'debug', "Retour : MAJ statut connecté (".$key['connected'].") de la machine ".$key['type']." - ".$key['brand']." - ".$key['vib'].").");
-                        }
-                    }*/
-
-            return 100; //config::byKey("cmdConditionActuel","calcul_arrosage");//intval($this->getConfiguration("paramIdCondition"));
-        }
+  
+             }
         else{
             log::add("calcul_arrosage","error","Value of ID Condition Param is not an ID");
             
@@ -314,10 +291,11 @@ class calcul_arrosageCmd extends cmd {
             case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe vdm . 
             // code pour rafraîchir ma commande
             
-            $info = $eqlogic-> updatePluieJournee() ; //Lance la fonction et stocke le résultat dans la variable $info
-            $eqlogic->checkAndUpdateCmd('PluieJournee', $info);
+            $eqlogic->updatePluieJournee() ; //Lance la fonction et stocke le résultat dans la variable $info
+            
 
-            $eqlogic-> updateTemperatureMax();  // Update la temperature max de la journée
+            $eqlogic->updateTemperatureMax();  // Update la temperature max de la journée
+            $eqlogic->updateTemperatureMin();
             break;
         }
     }
