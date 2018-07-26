@@ -146,7 +146,7 @@ class calcul_arrosage extends eqLogic {
 
     /*     * **********************Getteur Setteur*************************** */
 
-    public function updateTemperatureMac()
+    public function updateTemperatureMax()
     {
         //
         log::add("calcul_arrosage","info","Update Temperature Max");
@@ -278,6 +278,8 @@ class calcul_arrosageCmd extends cmd {
             
             $info = $eqlogic-> updatePluieJournee() ; //Lance la fonction et stocke le résultat dans la variable $info
             $eqlogic->checkAndUpdateCmd('PluieJournee', $info);
+
+            $eqlogic-> updateTemperatureMax();  // Update la temperature max de la journée
             break;
         }
     }
