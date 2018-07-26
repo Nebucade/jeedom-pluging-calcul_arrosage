@@ -160,7 +160,7 @@ class calcul_arrosage extends eqLogic {
 
     public function updateTemperatureMax()
     {
-        $eqlogic = $this->getEqLogic();
+        //$eqlogic = $this->getEqLogic();
         log::add("calcul_arrosage","info","Update Temperature Max");
 
         if (config::byKey("cmdTemperatureActuel","calcul_arrosage") != "")
@@ -179,7 +179,7 @@ class calcul_arrosage extends eqLogic {
             if ($tempActule>$tempMaxActuel)
             {
                 log::add("calcul_arrosage","debug","4");
-                $eqlogic->checkAndUpdateCmd('TemperatureMax', $tempActule);
+                $this->checkAndUpdateCmd('TemperatureMax', $tempActule);
                 log::add("calcul_arrosage","debug","5");
             }
             log::add("calcul_arrosage","info","New Temperature max :".$this->getCmd(null,'TemperatureMax')->execCmd());
@@ -189,7 +189,7 @@ class calcul_arrosage extends eqLogic {
 
     public function updateTemperatureMin()
     {
-        $eqlogic = $this->getEqLogic();
+        //$eqlogic = $this->getEqLogic();
         log::add("calcul_arrosage","info","Update Temperature Min");
 
         if (config::byKey("cmdTemperatureActuel","calcul_arrosage") != "")
@@ -205,7 +205,7 @@ class calcul_arrosage extends eqLogic {
 
             if ($tempActule<$tempMinActuel)
             {
-                $eqlogic->checkAndUpdateCmd('TemperatureMin', $tempActule);
+                $this->checkAndUpdateCmd('TemperatureMin', $tempActule);
             }
 
             log::add("calcul_arrosage","info","New Temperature min :".$this->getCmd(null,'TemperatureMin')->execCmd());
@@ -223,7 +223,7 @@ class calcul_arrosage extends eqLogic {
         
         if (config::byKey("cmdConditionActuel","calcul_arrosage") != "")
         {
-            $eqlogic = $this->getEqLogic();
+            //$eqlogic = $this->getEqLogic();
             log::add("calcul_arrosage","info","Value of ID Condition Param :".jeedom::evaluateExpression(config::byKey("cmdConditionActuel","calcul_arrosage")));
             //log::add("calcul_arrosage","info","Last Value of Condition :".var_dump($this->getCmd(null,'PluieJournee')->execCmd()));
             log::add("calcul_arrosage","info","Last Value of Condition :".$this->getCmd(null,'PluieJournee')->execCmd());
@@ -259,7 +259,7 @@ class calcul_arrosage extends eqLogic {
             if ($newValueOfMeteo  >= 200)
             {return $lastValueOfRain +1;}
             
-            $eqlogic->checkAndUpdateCmd('PluieJournee', $lastValueOfRain);
+            $this->checkAndUpdateCmd('PluieJournee', $lastValueOfRain);
             return ;
 
   
