@@ -96,6 +96,18 @@ class calcul_arrosage extends eqLogic {
         $info->setType('info');
         $info->setSubType('numeric');
         $info->save();
+
+
+        $info = $this->getCmd(null, 'TemperatureMin');
+        if (!is_object($info)) {
+            $info = new calcul_arrosageCmd();
+            $info->setName(__('Temperature Min', __FILE__));
+        }
+        $info->setLogicalId('TemperatureMin');
+        $info->setEqLogic_id($this->getId());
+        $info->setType('info');
+        $info->setSubType('numeric');
+        $info->save();
         
         $refresh = $this->getCmd(null, 'refresh');
         if (!is_object($refresh)) {
@@ -166,6 +178,32 @@ class calcul_arrosage extends eqLogic {
             {
                 $eqlogic->checkAndUpdateCmd('TemperatureMax', $tempActule);
             }
+            log::add("calcul_arrosage","info","New Temperature max :".$this->getCmd(null,'TemperatureMax')->execCmd());
+        }
+    }
+
+    public function updateTemperatureMin()
+    {
+        //
+        log::add("calcul_arrosage","info","Update Temperature Min");
+
+        if (config::byKey("cmdTemperatureActuel","calcul_arrosage") != "")
+        {
+            log::add("calcul_arrosage","info","Last Temperature min :".$this->getCmd(null,'TemperatureMin')->execCmd());
+            $tempMaxActuel  = $this->getCmd(null,'TemperatureMin')->execCmd();
+            $tempActule = jeedom::evaluateExpression(config::byKey("cmdTemperatureActuel","calcul_arrosage"));
+
+            if ($tempActule == null || $tempActule == "")
+            {
+                $tempActule = 100;
+            }
+
+            if ($tempActule>$tempMaxActuel)
+            {
+                $eqlogic->checkAndUpdateCmd('TemperatureMin', $tempActule);
+            }
+
+            log::add("calcul_arrosage","info","New Temperature min :".$this->getCmd(null,'TemperatureMin')->execCmd());
 
         }
     }
