@@ -168,19 +168,19 @@ class calcul_arrosage extends eqLogic {
             log::add("calcul_arrosage","info","Last Temperature max :".$this->getCmd(null,'TemperatureMax')->execCmd());
             $tempMaxActuel  = $this->getCmd(null,'TemperatureMax')->execCmd();
             log::add("calcul_arrosage","debug","1");
-            $tempActule = jeedom::evaluateExpression(config::byKey("cmdTemperatureActuel","calcul_arrosage"));
+            $tempActuel = jeedom::evaluateExpression(config::byKey("cmdTemperatureActuel","calcul_arrosage"));
             log::add("calcul_arrosage","debug","2");
-            if ($tempActule == null || $tempActule == "")
+            if ($tempActuel == null || $tempActuel == "")
             {
                 $tempMaxActuel = 0;
                 
             }
             log::add("calcul_arrosage","debug","3");
-            log::add("calcul_arrosage","debug","Set value :".$tempActule);
-            if ($tempActule>$tempMaxActuel)
+            log::add("calcul_arrosage","debug","Set value :".$tempActuel);
+            if ($tempActuel>$tempMaxActuel)
             {
                 log::add("calcul_arrosage","debug","4");
-                $this->checkAndUpdateCmd('TemperatureMax', $tempActule);
+                $this->checkAndUpdateCmd('TemperatureMax', $tempActuel);
                 log::add("calcul_arrosage","debug","5");
             }
             log::add("calcul_arrosage","info","New Temperature max :".$this->getCmd(null,'TemperatureMax')->execCmd());
@@ -197,17 +197,17 @@ class calcul_arrosage extends eqLogic {
         {
             log::add("calcul_arrosage","info","Last Temperature min :".$this->getCmd(null,'TemperatureMin')->execCmd());
             $tempMinActuel  = $this->getCmd(null,'TemperatureMin')->execCmd();
-            $tempActule = jeedom::evaluateExpression(config::byKey("cmdTemperatureActuel","calcul_arrosage"));
+            $tempActuel = jeedom::evaluateExpression(config::byKey("cmdTemperatureActuel","calcul_arrosage"));
 
-            if ($tempActule == null || $tempActule == "")
+            if ($tempActuel == null || $tempActuel == "")
             {
                 $tempMinActuel = 100;
               
             }
 
-            if ($tempActule<$tempMinActuel)
+            if ($tempActuel<$tempMinActuel)
             {
-                $this->checkAndUpdateCmd('TemperatureMin', $tempActule);
+                $this->checkAndUpdateCmd('TemperatureMin', $tempActuel);
             }
 
             log::add("calcul_arrosage","info","New Temperature min :".$this->getCmd(null,'TemperatureMin')->execCmd());
