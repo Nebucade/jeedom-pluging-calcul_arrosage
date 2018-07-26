@@ -160,7 +160,7 @@ class calcul_arrosage extends eqLogic {
 
     public function updateTemperatureMax()
     {
-        //
+        $eqlogic = $this->getEqLogic();
         log::add("calcul_arrosage","info","Update Temperature Max");
 
         if (config::byKey("cmdTemperatureActuel","calcul_arrosage") != "")
@@ -189,7 +189,7 @@ class calcul_arrosage extends eqLogic {
 
     public function updateTemperatureMin()
     {
-        //
+        $eqlogic = $this->getEqLogic();
         log::add("calcul_arrosage","info","Update Temperature Min");
 
         if (config::byKey("cmdTemperatureActuel","calcul_arrosage") != "")
@@ -223,7 +223,7 @@ class calcul_arrosage extends eqLogic {
         
         if (config::byKey("cmdConditionActuel","calcul_arrosage") != "")
         {
-            //$eqlogic = $this->getEqLogic();
+            $eqlogic = $this->getEqLogic();
             log::add("calcul_arrosage","info","Value of ID Condition Param :".jeedom::evaluateExpression(config::byKey("cmdConditionActuel","calcul_arrosage")));
             //log::add("calcul_arrosage","info","Last Value of Condition :".var_dump($this->getCmd(null,'PluieJournee')->execCmd()));
             log::add("calcul_arrosage","info","Last Value of Condition :".$this->getCmd(null,'PluieJournee')->execCmd());
