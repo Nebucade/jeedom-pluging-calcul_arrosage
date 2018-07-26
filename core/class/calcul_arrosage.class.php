@@ -160,9 +160,9 @@ class calcul_arrosage extends eqLogic {
             log::add("calcul_arrosage","info","Value of ID Condition Param :".jeedom::evaluateExpression(config::byKey("cmdConditionActuel","calcul_arrosage")));
             //log::add("calcul_arrosage","info","Last Value of Condition :".var_dump($this->getCmd(null,'PluieJournee')->execCmd()));
             log::add("calcul_arrosage","info","Last Value of Condition :".$this->getCmd(null,'PluieJournee')->execCmd());
-            
+            log::add("calcul_arrosage","info","Last Value of Condition :".($lastValueOfRain == null));
             $lastValueOfRain = $this->getCmd(null,'PluieJournee')->execCmd();
-            if ($lastValueOfRain == null)
+            if ($lastValueOfRain == null || $lastValueOfRain == "")
             {
                 $lastValueOfRain = 0;
             }
