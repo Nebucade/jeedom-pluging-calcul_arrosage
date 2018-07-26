@@ -170,7 +170,7 @@ class calcul_arrosage extends eqLogic {
             log::add("calcul_arrosage","debug","1");
             $tempActuel = jeedom::evaluateExpression(config::byKey("cmdTemperatureActuel","calcul_arrosage"));
             log::add("calcul_arrosage","debug","2");
-            if ($tempActuel == null || $tempActuel == "")
+            if ($tempMaxActuel == null || $tempMaxActuel == "")
             {
                 $tempMaxActuel = 0;
                 
@@ -199,7 +199,7 @@ class calcul_arrosage extends eqLogic {
             $tempMinActuel  = $this->getCmd(null,'TemperatureMin')->execCmd();
             $tempActuel = jeedom::evaluateExpression(config::byKey("cmdTemperatureActuel","calcul_arrosage"));
 
-            if ($tempActuel == null || $tempActuel == "")
+            if ($tempMinActuel == null || $tempMinActuel == "")
             {
                 $tempMinActuel = 100;
               
