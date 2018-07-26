@@ -146,6 +146,29 @@ class calcul_arrosage extends eqLogic {
 
     /*     * **********************Getteur Setteur*************************** */
 
+    public function updateTemperatureMac()
+    {
+        //
+        log::add("calcul_arrosage","info","Update Temperature Max");
+
+        if (config::byKey("cmdTemperatureActuel","calcul_arrosage") != "")
+        {
+            log::add("calcul_arrosage","info","Last Temperature max :".$this->getCmd(null,'TemperatureMax')->execCmd());
+            $tempMaxActuel  = $this->getCmd(null,'TemperatureMax')->execCmd();
+            $tempActule = jeedom::evaluateExpression(config::byKey("cmdTemperatureActuel","calcul_arrosage"));
+
+            if ($tempActule == null || $tempActule == "")
+            {
+                $tempActule = 0;
+            }
+
+            if ($tempActule>$tempMaxActuel)
+            {
+                $eqlogic->checkAndUpdateCmd('TemperatureMax', $tempActule);
+            }
+
+        }
+    }
 
     public function updatePluieJournee()  
     {
