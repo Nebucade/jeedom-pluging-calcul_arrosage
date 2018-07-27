@@ -132,10 +132,10 @@ class calcul_arrosage extends eqLogic {
         $refresh->save();   
 
 
-        $refresh = $this->getCmd(null, 'Calcul Arrosage');
+        $refresh = $this->getCmd(null, 'Calcul');
         if (!is_object($refresh)) {
             $refresh = new calcul_arrosageCmd();
-            $refresh->setName(__('Calcul', __FILE__));
+            $refresh->setName(__('Calcul arrosage', __FILE__));
         }
         $refresh->setEqLogic_id($this->getId());
         $refresh->setLogicalId('Calcul');
