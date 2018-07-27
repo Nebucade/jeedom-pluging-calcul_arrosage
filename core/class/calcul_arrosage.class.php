@@ -109,12 +109,12 @@ class calcul_arrosage extends eqLogic {
         $info->setSubType('numeric');
         $info->save();
 
-        $info = $this->getCmd(null, 'DateCalucl');
+        $info = $this->getCmd(null, 'DateCalcul');
         if (!is_object($info)) {
             $info = new calcul_arrosageCmd();
             $info->setName(__('Date du dernier calcul', __FILE__));
         }
-        $info->setLogicalId('DateCalucl');
+        $info->setLogicalId('DateCalcul');
         $info->setEqLogic_id($this->getId());
         $info->setType('info');
         $info->setSubType('numeric');
@@ -191,6 +191,8 @@ class calcul_arrosage extends eqLogic {
     public function calculArrosage()
     {
         $this->resetValue();
+        $this->checkAndUpdateCmd('DateCalcul', new Date());
+        
     }
 
 
