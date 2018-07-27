@@ -217,7 +217,57 @@ class calcul_arrosage extends eqLogic {
     {
         $this->resetValue();
         $this->checkAndUpdateCmd('DateCalcul',  mktime() );
+
+
+        /* Calcul de la duré de l'arrosage */
+        $dureeArrosage = 0;
+        // 1 a t'il plut aujourd'dui
+        $rainToday = $this->getCmd(null,'PluieJournee')->execCmd();
+         // Entre 1 et 2 heures
+        if ($rainToday >=4 && $rainToday <8) 
+        {
+            $dureeArrosage = -10;
+        } 
+        // Entre 2 et 3 heures
+        else if ($rainToday >=8 && $rainToday <12) 
+        {
+            $dureeArrosage = -15;
+        } 
+        else if ($rainToday >=12 ) 
+        {
+            $dureeArrosage = -20;
+        } 
+
+        // 2 a t'il fait chaud
+
+        $tempMax  = $this->getCmd(null,'TemperatureMax')->execCmd();
+        if ($tempMax <5 ) 
+        {
+            $dureeArrosage = $dureeArrosage -100;
+        } 
+        else if ($tempMax <10 ) 
+        {
+            $dureeArrosage = $dureeArrosage + 0;
+        } 
+        else if ($tempMax <20 ) 
+        {
+            $dureeArrosage = $dureeArrosage +5;
+        } 
+        else if ($tempMax <25 ) 
+        {
+            $dureeArrosage = $dureeArrosage +10;
+        } 
+        else if ($tempMax <25 ) 
+        {
+            $dureeArrosage = $dureeArrosage +15;
+        } 
+        else if ($tempMax >=25 ) 
+        {
+            $dureeArrosage = $dureeArrosage +20;
+        } 
+
         
+
     }
 
 
