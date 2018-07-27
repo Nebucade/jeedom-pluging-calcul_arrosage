@@ -120,6 +120,31 @@ class calcul_arrosage extends eqLogic {
         $info->setSubType('numeric');
         $info->save();
         
+
+
+        $info = $this->getCmd(null, 'DureeArrosageFleurSoir');
+        if (!is_object($info)) {
+            $info = new calcul_arrosageCmd();
+            $info->setName(__('Duree Arrosage des Fleurs le Soir', __FILE__));
+        }
+        $info->setLogicalId('DureeArrosageFleurSoir');
+        $info->setEqLogic_id($this->getId());
+        $info->setType('info');
+        $info->setSubType('numeric');
+        $info->save();
+
+        $info = $this->getCmd(null, 'DureeArrosagePelouseSoir');
+        if (!is_object($info)) {
+            $info = new calcul_arrosageCmd();
+            $info->setName(__('Duree Arrosage de la pelouse le Soir', __FILE__));
+        }
+        $info->setLogicalId('DureeArrosagePelouseSoir');
+        $info->setEqLogic_id($this->getId());
+        $info->setType('info');
+        $info->setSubType('numeric');
+        $info->save();
+
+
         $refresh = $this->getCmd(null, 'refresh');
         if (!is_object($refresh)) {
             $refresh = new calcul_arrosageCmd();
