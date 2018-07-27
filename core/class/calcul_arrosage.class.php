@@ -191,7 +191,7 @@ class calcul_arrosage extends eqLogic {
     public function calculArrosage()
     {
         $this->resetValue();
-        $this->checkAndUpdateCmd('DateCalcul', new Date());
+        $this->checkAndUpdateCmd('DateCalcul',  mktime() );
         
     }
 
