@@ -108,6 +108,17 @@ class calcul_arrosage extends eqLogic {
         $info->setType('info');
         $info->setSubType('numeric');
         $info->save();
+
+        $info = $this->getCmd(null, 'DateCalucl');
+        if (!is_object($info)) {
+            $info = new calcul_arrosageCmd();
+            $info->setName(__('Date du dernier calcul', __FILE__));
+        }
+        $info->setLogicalId('DateCalucl');
+        $info->setEqLogic_id($this->getId());
+        $info->setType('info');
+        $info->setSubType('numeric');
+        $info->save();
         
         $refresh = $this->getCmd(null, 'refresh');
         if (!is_object($refresh)) {
@@ -119,6 +130,18 @@ class calcul_arrosage extends eqLogic {
         $refresh->setType('action');
         $refresh->setSubType('other');
         $refresh->save();   
+
+
+        $refresh = $this->getCmd(null, 'Calcul Arrosage');
+        if (!is_object($refresh)) {
+            $refresh = new calcul_arrosageCmd();
+            $refresh->setName(__('Calcul', __FILE__));
+        }
+        $refresh->setEqLogic_id($this->getId());
+        $refresh->setLogicalId('Calcul');
+        $refresh->setType('action');
+        $refresh->setSubType('other');
+        $refresh->save();  
     }
 
     public function preUpdate() {
@@ -157,6 +180,19 @@ class calcul_arrosage extends eqLogic {
      */
 
     /*     * **********************Getteur Setteur*************************** */
+    
+    Public function resetValue()
+    {
+        $this->checkAndUpdateCmd('TemperatureMax', 20);
+        $this->checkAndUpdateCmd('TemperatureMin', 20);
+        $this->checkAndUpdateCmd('PluieJournee', 0);
+    }
+    
+    public function calculArrosage()
+    {
+        $this->resetValue();
+    }
+
 
     public function updateTemperatureMax()
     {
@@ -302,6 +338,12 @@ class calcul_arrosageCmd extends cmd {
 
             $eqlogic->updateTemperatureMax();  // Update la temperature max de la journée
             $eqlogic->updateTemperatureMin();
+            break;
+
+            case 'Calcul': 
+            
+            $eqlogic->calculArrosage() ; 
+        
             break;
         }
     }
